@@ -144,21 +144,17 @@
 
         /* Felugró üzenetablak */
         .secret-content {
-            /* Felugró üzenetablak */
-.secret-content {
-    display: none;
-    background: rgba(163, 226, 247, 0.01); 
-    border: 1px solid rgba(163, 226, 247, 0.15); 
-    border-radius: 14px;
-    padding: 15px;
-    margin-top: -6px;
-    margin-bottom: 15px;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #c5c5d1; 
-    animation: bootUp 0.3s ease-out;
-}
-
+            display: none;
+            background: rgba(163, 226, 247, 0.01); 
+            border: 1px solid rgba(163, 226, 247, 0.15); 
+            border-radius: 14px;
+            padding: 15px;
+            margin-top: -6px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #c5c5d1; 
+            animation: bootUp 0.3s ease-out;
         }
 
         @keyframes bootUp {
@@ -214,7 +210,7 @@
 <body>
 
     <div class="dashboard">
-        <div class="sys-status">✦ You’re my favorite notification ✦</div>
+        <div class="sys-status">✦ You're my favorite notification ✦</div>
         <h1>Syncing_With_You</h1>
         
         <!-- INTRO FOTÓ (A kep1.jpg legyen a GitHub mappádban!) -->
@@ -235,7 +231,7 @@
             <div id="msg1" class="secret-content">
 
                 <span class="kaomoji-big">≽^•⩊•^≼૮ • ﻌ - ა</span>
-                barmennyire is tavol legyunk egyastol tudd hogy lelekben midig veled vagyok es tudom hogy ez forditva is igy van igazabol barmi is tortenjen mi ketten a vilag osszes problemajan tul tudunk lendulni es ha valami nyomja a szived azt nekem barmikor elmondhatod ha szeretned mert barmi is tortenjek en mindig itt leszek melletted nagyon szeretlek!! 
+                barmennyire is tavol legyunk egyastol tudd hogy lelekben midig veled vagyok es tudom hogy ez forditva is igy van igazabol barmi is tortenjen mi ketten a vilag osszes problemajan tul vagyunk
             </div>
 
 
@@ -245,7 +241,7 @@
             </button>
             <div id="msg2" class="secret-content">
                 <span class="kaomoji-big">  ˗ˋˏ ♡ ˎˊ˗</span>
-               ha esetleg egy faraszto napod van vagy akar csak valami nehezseggel talalod magad szembe en itt leszek es amiben csak tudok megprobalok neked segiteni legalabb annyival hogy meghallgatlak de ne feledd a pihenes nagyon fontos es neked is szukseged van ra szivem szoval barmennyi dolog is jojjon kozbe kerlek ezt kerlek ne feledd el ⋆˚✿🍒𐙚⋆˚
+               ha esetleg egy faraszto napod van vagy akar csak valami nehezseggel talalod magad szembe en itt leszek es amiben csak tudok megprobalok neked segiteni
             </div>
 
             <button class="secret-btn" onclick="toggleSecret('msg3')">
@@ -269,10 +265,30 @@
                 </div>
                 <span>music_player.sys</span>
             </div>
-            <!-- Ide másolhatod be a saját listád kódját, de add hozzá a link végéhez ezt: https://open.spotify.com/playlist/47axwd3xUI8xrxm50JjjKx?pi=BgBDFVNiQjO6W&theme=0 -->
-            <iframe style="border-radius:12px; display:block;" src="https://spotify.com" width="100%" height="350" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/playlist/47axwd3xUI8xrxm50JjjKx?utm_source=generator" width="100%" height="350" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
     <script>
         // Pontos induló dátum: 2026.01.21
+        function toggleSecret(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // Timer function - calculates days from start date
+        function updateTimer() {
+            const startDate = new Date('2026-01-21');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('timer').textContent = `📍 ${diffDays} nap veled...`;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
