@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core_System_2026.01.21 ──★</title>
+    
+    <!-- Google Fonts: Exo 2 -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,600;0,900;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #500075;                 /* Mély, sötét lilás-fekete háttér */
+            --panel-bg: rgba(207, 220, 255, 0.8); /* Áttetsző sötétlila panel */
+            --pastel-blue: #BFF4FF;        /* Pasztell babakék */
+            --pastel-purple: #500075;      /* Halvány pasztell lila */
+            --text: #ADE0FF;               /* Lágy fehér szöveg */
+            --border: rgba(163, 226, 247, 0.2);
+        }
+        
+        body {
+            background-color: var(--bg);
+            /* Finom pasztell rácsháló háttér */
+            background-image: 
+                linear-gradient(rgba(163, 226, 247, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(163, 226, 247, 0.02) 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Exo 2', sans-serif;
+            margin: 0;
+            padding: 15px;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Fő Dashboard Panel (Glow + Pasztell árnyék) */
+        .dashboard {
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            max-width: 420px;
+            width: 100%;
+            padding: 25px 20px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 0 30px rgba(209, 179, 255, 0.08), inset 0 0 15px rgba(163, 226, 247, 0.03);
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Rendszer státusz jelző */
+        .sys-status {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--pastel-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 8px rgba(163, 226, 247, 0.4);
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            margin: 5px 0 20px 0;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        /* UI Fotókeret pasztell lila ragyogással */
+        .photo-frame {
+            border: 1px solid rgba(209, 179, 255, 0.3);
+            border-radius: 16px;
+            padding: 5px;
+            background: rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(209, 179, 255, 0.05);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: auto;
+            max-height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        /* Digitális Időszámláló pasztell színátmenettel */
+        .counter-display {
+            font-size: 17px;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding: 14px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--pastel-blue);
+            border-right: 3px solid var(--pastel-purple);
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        /* Kaomoji gombok */
+        .secret-container {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .secret-btn {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 14px 16px;
+            font-size: 14px;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 12px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .secret-btn:active {
+            background: rgba(163, 226, 247, 0.04);
+            border-color: var(--pastel-blue);
+            box-shadow: 0 0 12px rgba(163, 226, 247, 0.15);
+        }
+
+        .secret-btn .kaomoji-trigger {
+            font-size: 15px;
+            color: var(--pastel-purple);
+            text-shadow: 0 0 8px rgba(209, 179, 255, 0.5);
+        }
+
+        /* Felugró üzenetablak */
+        .secret-content {
+            /* Felugró üzenetablak */
+.secret-content {
+    display: none;
+    background: rgba(163, 226, 247, 0.01); 
+    border: 1px solid rgba(163, 226, 247, 0.15); 
+    border-radius: 14px;
+    padding: 15px;
+    margin-top: -6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #c5c5d1; 
+    animation: bootUp 0.3s ease-out;
+}
+
+        }
+
+        @keyframes bootUp {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .kaomoji-big {
+            font-size: 18px;
+            color: var(--pastel-blue);
+            display: block;
+            margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(163, 226, 247, 0.4);
+        }
+
+        /* Y2K / KAWAII RETRO ABLAK A SPOTIFY KÖRÉ (A Pinterest kép alapján) */
+        .playlist-wrapper {
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
+            border: 3px solid #ffffff; 
+            border-radius: 24px;
+            padding: 15px; 
+            box-shadow: 0 0 20px rgba(163, 226, 247, 0.2), 5px 5px 0px rgba(0, 0, 0, 0.2);
+            margin-top: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Kis retro dekorációs fejléc a gombokkal az ablak tetejére */
+        .playlist-header {
+            display: flex;
+            align-items: center;
+            padding-bottom: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+        }
+        .playlist-dots {
+            display: flex;
+            gap: 5px;
+            margin-right: 12px;
+        }
+        .playlist-dot {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard">
+        <div class="sys-status">✦ You’re my favorite notification ✦</div>
+        <h1>Syncing_With_You</h1>
+        
+        <!-- INTRO FOTÓ (A kep1.jpg legyen a GitHub mappádban!) -->
+        <div class="photo-frame">
+            <img src="kep1.jpg" alt="[ database_image_01 ]">
+        </div>
+        
+        <!-- DIGITÁLIS SZÁMLÁLÓ -->
+        <div class="counter-display" id="timer">CONNECTING...</div>
+
+        <!-- KAOMOJI TERMINÁLOK -->
+        <div class="secret-container">
+            
+            <button class="secret-btn" onclick="toggleSecret('msg1')">
+                <span>Ha nagyon távol vagyunk...</span>
+                <span class="kaomoji-trigger">(っ⇀`_´↼)っ</span>
+            </button>
+            <div id="msg1" class="secret-content">
+
+                <span class="kaomoji-big">≽^•⩊•^≼૮ • ﻌ - ა</span>
+                barmennyire is tavol legyunk egyastol tudd hogy lelekben midig veled vagyok es tudom hogy ez forditva is igy van igazabol barmi is tortenjen mi ketten a vilag osszes problemajan tul tudunk lendulni es ha valami nyomja a szived azt nekem barmikor elmondhatod ha szeretned mert barmi is tortenjek en mindig itt leszek melletted nagyon szeretlek!! 
+            </div>
+
+
+            <button class="secret-btn" onclick="toggleSecret('msg2')">
+                <span>ha nagyon kimerulnel </span>
+                <span class="kaomoji-trigger"> (,,>﹏<,,) </span>
+            </button>
+            <div id="msg2" class="secret-content">
+                <span class="kaomoji-big">  ˗ˋˏ ♡ ˎˊ˗</span>
+               ha esetleg egy faraszto napod van vagy akar csak valami nehezseggel talalod magad szembe en itt leszek es amiben csak tudok megprobalok neked segiteni legalabb annyival hogy meghallgatlak de ne feledd a pihenes nagyon fontos es neked is szukseged van ra szivem szoval barmennyi dolog is jojjon kozbe kerlek ezt kerlek ne feledd el ⋆˚✿🍒𐙚⋆˚
+            </div>
+
+            <button class="secret-btn" onclick="toggleSecret('msg3')">
+                <span>meg egy gondolat</span>
+                <span class="kaomoji-trigger">✧(≖ ‿ ≖)</span>
+            </button>
+            <div id="msg3" class="secret-content">
+                <span class="kaomoji-big">٩(◕‿◕｡)۶✨</span>
+                Már renderelem a következő személyes randinkat! Köszönöm ezt a zseniális 5 hónapot, amit veled tölthettem. Alig várom, hogy élőben is megnyomjam a restart gombot!
+            </div>
+            
+        </div>
+
+        <!-- SPOTIFY RETRO SZÁMÍTÓGÉPES ABLAKBAN -->
+        <div class="playlist-wrapper">
+            <div class="playlist-header">
+                <div class="playlist-dots">
+                    <div class="playlist-dot"></div>
+                    <div class="playlist-dot"></div>
+                    <div class="playlist-dot"></div>
+                </div>
+                <span>music_player.sys</span>
+            </div>
+            <!-- Ide másolhatod be a saját listád kódját, de add hozzá a link végéhez ezt: https://open.spotify.com/playlist/47axwd3xUI8xrxm50JjjKx?pi=BgBDFVNiQjO6W&theme=0 -->
+            <iframe style="border-radius:12px; display:block;" src="https://spotify.com" width="100%" height="350" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Pontos induló dátum: 2026.01.21
