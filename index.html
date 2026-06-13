@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Memory Lane ✦</title>
     <!-- Exo 2 Betűtípus beágyazása -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* A megadott színpaletta pontos HEX kódjai */
@@ -170,18 +170,15 @@
 
         /* Custom Cute Y2K Csillag Ikon SVG-vel */
         summary::after {
-            content: '';
-            width: 18px;
-            height: 18px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='%23DA7D91'%3E%3Cpath d='M12 2l2.4 7.2L22 11.6l-5.6 4.8L17.6 22 12 17.6 6.4 22l1.2-5.6L2 11.6l7.6-2.4z'/%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
+            content: '✦';
+            font-size: 1.2rem;
+            color: var(--petal-rouge);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         details[open] summary::after {
             transform: rotate(90deg) scale(1.1);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='%238B4C41'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            color: var(--reddish-brown);
         }
 
         summary:hover {
@@ -243,7 +240,7 @@
                 </div>
                 <div class="time-unit">
                     <span class="time-value" id="seconds">00</span>
-                    <span class="time-label">mperc</span>
+                    <span class="time-label">másodperc</span>
                 </div>
             </div>
         </div>
@@ -283,7 +280,7 @@
 
         <!-- SPOTIFY LEJÁTSZÓ -->
         <div class="spotify-wrapper">
-            <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/47axwd3xUI8xrxm50JjjKx" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
         </div>
 
         <!-- LÁBJEGYZÉK -->
@@ -294,3 +291,29 @@
     <!-- PONTOS SZÁMLÁLÓ SCRIPT -->
     <script>
         // 2026. Január 21. UTC+1 (Magyar időzóna szerint)
+        const startDate = new Date('2026-01-21T00:00:00+01:00');
+
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            // Számítások
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            // DOM frissítés kétjegyű formátumban
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Kezdeti frissítés és 1 másodpercenként ismétlés
+        updateCounter();
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
