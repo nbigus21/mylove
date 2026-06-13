@@ -3,290 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Core_System_2026.01.21 ──★</title>
-    
-    <!-- Google Fonts: Exo 2 -->
+    <title>Our Memory Lane ✦</title>
+    <!-- Exo 2 Betűtípus beágyazása -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,600;0,900;1,400&display=swap" rel="stylesheet">
-
+    <link href="https://googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
+        /* A megadott színpaletta pontos HEX kódjai */
         :root {
-            --bg: #500075;                 /* Mély, sötét lilás-fekete háttér */
-            --panel-bg: rgba(207, 220, 255, 0.8); /* Áttetsző sötétlila panel */
-            --pastel-blue: #BFF4FF;        /* Pasztell babakék */
-            --pastel-purple: #500075;      /* Halvány pasztell lila */
-            --text: #ADE0FF;               /* Lágy fehér szöveg */
-            --border: rgba(163, 226, 247, 0.2);
+            --mint-cream: #F6FFFA;
+            --soft-linen: #E6E6DB;
+            --ash-grey: #A0BBB2;
+            --petal-rouge: #DA7D91;
+            --reddish-brown: #8B4C41;
         }
-        
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         body {
-            background-color: var(--bg);
-            /* Finom pasztell rácsháló háttér */
+            background-color: var(--soft-linen);
+            /* Lágy, elmosódott gradiens háttér a paletta színeiből */
             background-image: 
-                linear-gradient(rgba(163, 226, 247, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(163, 226, 247, 0.02) 1px, transparent 1px);
-            background-size: 20px 20px;
+                radial-gradient(at 0% 0%, rgba(246, 255, 250, 0.8) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(218, 125, 145, 0.3) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(160, 187, 178, 0.4) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(139, 76, 65, 0.1) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--reddish-brown);
             font-family: 'Exo 2', sans-serif;
             margin: 0;
-            padding: 15px;
-            color: var(--text);
+            padding: 40px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
-        /* Fő Dashboard Panel (Glow + Pasztell árnyék) */
-        .dashboard {
-            background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            max-width: 420px;
+        .container {
+            max-width: 480px;
             width: 100%;
-            padding: 25px 20px;
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            box-shadow: 0 0 30px rgba(209, 179, 255, 0.08), inset 0 0 15px rgba(163, 226, 247, 0.03);
-            text-align: center;
-            box-sizing: border-box;
         }
 
-        /* Rendszer státusz jelző */
-        .sys-status {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--pastel-blue);
+        /* Tipográfia és Címsor (Cute Y2K minimalizmus) */
+        h1 {
+            font-weight: 700;
+            font-size: 2.2rem;
+            color: var(--reddish-brown);
+            text-align: center;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: var(--petal-rouge);
+            text-align: center;
+            margin-bottom: 35px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 0 0 8px rgba(163, 226, 247, 0.4);
         }
 
-        h1 {
-            font-size: 26px;
-            font-weight: 900;
-            margin: 5px 0 20px 0;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        /* Élő Számláló (Kifinomult kártya dizájn) */
+        .counter-card {
+            background: rgba(246, 255, 250, 0.65);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(246, 255, 250, 0.8);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(139, 76, 65, 0.05);
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        /* UI Fotókeret pasztell lila ragyogással */
-        .photo-frame {
-            border: 1px solid rgba(209, 179, 255, 0.3);
-            border-radius: 16px;
-            padding: 5px;
-            background: rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(209, 179, 255, 0.05);
+        .counter-title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--petal-rouge);
+            margin-bottom: 16px;
         }
-        .photo-frame img {
+
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--reddish-brown);
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--ash-grey);
+            text-transform: lowercase;
+            margin-top: 2px;
+        }
+
+        /* Közös kép konténer */
+        .image-wrapper {
+            background: var(--mint-cream);
+            padding: 12px;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(139, 76, 65, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .image-wrapper img {
             width: 100%;
             height: auto;
-            max-height: 240px;
-            object-fit: cover;
-            border-radius: 12px;
+            border-radius: 18px;
             display: block;
+            object-fit: cover;
         }
 
-        /* Digitális Időszámláló pasztell színátmenettel */
-        .counter-display {
-            font-size: 17px;
-            font-weight: 600;
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
-            padding: 14px;
-            border-radius: 14px;
-            margin-bottom: 25px;
-            border-left: 3px solid var(--pastel-blue);
-            border-right: 3px solid var(--pastel-purple);
-            letter-spacing: 0.5px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-        }
-
-        /* Kaomoji gombok */
-        .secret-container {
-            margin: 20px 0;
-            text-align: left;
-        }
-        
-        .secret-btn {
-            background: rgba(255, 255, 255, 0.02);
-            color: var(--text);
-            border: 1px solid rgba(255,255,255,0.08);
-            padding: 14px 16px;
-            font-size: 14px;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
+        /* Lenyíló Fülek */
+        .accordion {
             width: 100%;
             margin-bottom: 12px;
-            border-radius: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.2s ease;
-            box-sizing: border-box;
         }
 
-        .secret-btn:active {
-            background: rgba(163, 226, 247, 0.04);
-            border-color: var(--pastel-blue);
-            box-shadow: 0 0 12px rgba(163, 226, 247, 0.15);
-        }
-
-        .secret-btn .kaomoji-trigger {
-            font-size: 15px;
-            color: var(--pastel-purple);
-            text-shadow: 0 0 8px rgba(209, 179, 255, 0.5);
-        }
-
-        /* Felugró üzenetablak */
-        .secret-content {
-            display: none;
-            background: rgba(163, 226, 247, 0.01); 
-            border: 1px solid rgba(163, 226, 247, 0.15); 
-            border-radius: 14px;
-            padding: 15px;
-            margin-top: -6px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            line-height: 1.6;
-            color: #c5c5d1; 
-            animation: bootUp 0.3s ease-out;
-        }
-
-        @keyframes bootUp {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .kaomoji-big {
-            font-size: 18px;
-            color: var(--pastel-blue);
-            display: block;
-            margin-bottom: 8px;
-            text-shadow: 0 0 8px rgba(163, 226, 247, 0.4);
-        }
-
-        /* Y2K / KAWAII RETRO ABLAK A SPOTIFY KÖRÉ (A Pinterest kép alapján) */
-        .playlist-wrapper {
-            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-purple));
-            border: 3px solid #ffffff; 
-            border-radius: 24px;
-            padding: 15px; 
-            box-shadow: 0 0 20px rgba(163, 226, 247, 0.2), 5px 5px 0px rgba(0, 0, 0, 0.2);
-            margin-top: 25px;
-            position: relative;
+        details {
+            background: rgba(246, 255, 250, 0.5);
+            border: 1px solid rgba(160, 187, 178, 0.3);
+            border-radius: 18px;
             overflow: hidden;
         }
 
-        /* Kis retro dekorációs fejléc a gombokkal az ablak tetejére */
-        .playlist-header {
+        details[open] {
+            background: var(--mint-cream);
+            border-color: var(--petal-rouge);
+            box-shadow: 0 8px 25px rgba(218, 125, 145, 0.1);
+        }
+
+        summary {
+            padding: 18px 22px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            list-style: none;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            padding-bottom: 12px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #fff;
+            user-select: none;
+            color: var(--reddish-brown);
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Custom Cute Y2K Csillag Ikon SVG-vel */
+        summary::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='%23DA7D91'%3E%3Cpath d='M12 2l2.4 7.2L22 11.6l-5.6 4.8L17.6 22 12 17.6 6.4 22l1.2-5.6L2 11.6l7.6-2.4z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg) scale(1.1);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' viewBox='0 0 24 24' fill='%238B4C41'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+        }
+
+        summary:hover {
+            color: var(--petal-rouge);
+            background: rgba(246, 255, 250, 0.8);
+        }
+
+        .drawer-content {
+            padding: 0 22px 22px 22px;
+            font-weight: 300;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #5a322a;
+        }
+
+        /* Spotify Integráció */
+        .spotify-wrapper {
+            margin-top: 30px;
+            background: rgba(160, 187, 178, 0.2);
+            padding: 8px;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 500;
             letter-spacing: 1px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
-        }
-        .playlist-dots {
-            display: flex;
-            gap: 5px;
-            margin-right: 12px;
-        }
-        .playlist-dot {
-            width: 8px;
-            height: 8px;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0.7;
+            color: var(--ash-grey);
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard">
-        <div class="sys-status">✦ You're my favorite notification ✦</div>
-        <h1>Syncing_With_You</h1>
+    <div class="container">
         
-        <!-- INTRO FOTÓ (A kep1.jpg legyen a GitHub mappádban!) -->
-        <div class="photo-frame">
-            <img src="kep1.jpg" alt="[ database_image_01 ]">
-        </div>
-        
-        <!-- DIGITÁLIS SZÁMLÁLÓ -->
-        <div class="counter-display" id="timer">CONNECTING...</div>
+        <!-- CÍMSOROK -->
+        <h1>soft memories.</h1>
+        <div class="subtitle">established in 2026</div>
 
-        <!-- KAOMOJI TERMINÁLOK -->
-        <div class="secret-container">
-            
-            <button class="secret-btn" onclick="toggleSecret('msg1')">
-                <span>Ha nagyon távol vagyunk...</span>
-                <span class="kaomoji-trigger">(っ⇀`_´↼)っ</span>
-            </button>
-            <div id="msg1" class="secret-content">
-                <span class="kaomoji-big">≽^•⩊•^≼૮ • ﻌ - ა</span>
-                barmennyire is tavol legyunk egyastol tudd hogy lelekben midig veled vagyok es tudom hogy ez forditva is igy van igazabol barmi is tortenjen mi ketten a vilag osszes problemajan tul tudunk lendulni es ha valami nyomja a szived azt nekem barmikor elmondhatod ha szeretned mert barmi is tortenjek en mindig itt leszek melletted nagyon szeretlek!!
-            </div>
-
-            <button class="secret-btn" onclick="toggleSecret('msg2')">
-                <span>ha nagyon kimerulnel </span>
-                <span class="kaomoji-trigger"> (,,>﹏<,,) </span>
-            </button>
-            <div id="msg2" class="secret-content">
-                <span class="kaomoji-big">  ˗ˋˏ ♡ ˎˊ˗</span>
-               ha esetleg egy faraszto napod van vagy akar csak valami nehezseggel talalod magad szembe en itt leszek es amiben csak tudok megprobalok neked segiteni legalabb annyival hogy meghallgatlak de ne feledd a pihenes nagyon fontos es neked is szukseged van ra szivem szoval barmennyi dolog is jojjon kozbe kerlek ezt kerlek ne feledd el ⋆˚✿🍒𐙚⋆˚
-            </div>
-
-            <button class="secret-btn" onclick="toggleSecret('msg3')">
-                <span>meg egy gondolat</span>
-                <span class="kaomoji-trigger">✧(≖ ‿ ≖)</span>
-            </button>
-            <div id="msg3" class="secret-content">
-                <span class="kaomoji-big">٩(◕‿◕｡)۶✨</span>
-               igazabol csak annyit szeretnek mondani hogy nagyooooon szeretleeeeek es koszonom hogy az eletem resze vagy es igazabol nincsenek szavak arra amit erzek irantad
-            </div>
-            
-        </div>
-
-        <!-- SPOTIFY RETRO SZÁMÍTÓGÉPES ABLAKBAN -->
-        <div class="playlist-wrapper">
-            <div class="playlist-header">
-                <div class="playlist-dots">
-                    <div class="playlist-dot"></div>
-                    <div class="playlist-dot"></div>
-                    <div class="playlist-dot"></div>
+        <!-- ÉLŐ IDŐMÉRŐ SZÁMLÁLÓ -->
+        <div class="counter-card">
+            <div class="counter-title">Time spent together</div>
+            <div class="counter-grid">
+                <div class="time-unit">
+                    <span class="time-value" id="days">00</span>
+                    <span class="time-label">nap</span>
                 </div>
-                <span>music_player.sys</span>
+                <div class="time-unit">
+                    <span class="time-value" id="hours">00</span>
+                    <span class="time-label">óra</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-label">perc</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-label">mperc</span>
+                </div>
             </div>
-            <iframe style="border-radius:12px; display:block;" src="https://open.spotify.com/embed/playlist/47axwd3xUI8xrxm50JjjKx?utm_source=generator" width="100%" height="350" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
+
+        <!-- GRAFIKUSI BORÍTÓKÉP (Borito.png a GitHubról) -->
+        <div class="image-wrapper">
+            <img src="Borito.png" alt="Our Cover">
+        </div>
+
+        <!-- CUTE AKKORDEON FÜLEK -->
+        <div class="accordion">
+            <details>
+                <summary>the first chapter</summary>
+                <div class="drawer-content">
+                    Ide jöhet az első kedves gondolatod. Az Exo 2 betűtípus vékonyított verziója tökéletesen olvashatóvá teszi a hosszabb szövegeket is, miközben letisztult marad.
+                </div>
+            </details>
+        </div>
+
+        <div class="accordion">
+            <details>
+                <summary>favorite little things</summary>
+                <div class="drawer-content">
+                    A második fül tartalma. Grafikai szempontból a fehér belső rész (Mint Cream) fókuszba helyezi a szöveges üzenetet, miután a látogató rákattintott.
+                </div>
+            </details>
+        </div>
+
+        <div class="accordion">
+            <details>
+                <summary>a note for you</summary>
+                <div class="drawer-content">
+                    A harmadik fül helye. Nyugodtan használhatsz emojikat is a szövegben, de a letisztult design miatt a kevesebb néha több elve érvényesül.
+                </div>
+            </details>
+        </div>
+
+        <!-- SPOTIFY LEJÁTSZÓ -->
+        <div class="spotify-wrapper">
+            <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <!-- LÁBJEGYZÉK -->
+        <footer>made with ♡ for you</footer>
+
     </div>
 
+    <!-- PONTOS SZÁMLÁLÓ SCRIPT -->
     <script>
-        // Pontos induló dátum: 2026.01.21
-        function toggleSecret(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.style.display = element.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-
-        // Timer function - calculates days from start date
-        function updateTimer() {
-            const startDate = new Date('2026-01-21');
-            const today = new Date();
-            const diffTime = Math.abs(today - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('timer').textContent = `📍 ${diffDays} nap veled...`;
-        }
-
-        updateTimer();
-        setInterval(updateTimer, 1000);
-    </script>
-</body>
-</html>
+        // 2026. Január 21. UTC+1 (Magyar időzóna szerint)
